@@ -797,16 +797,22 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add file URLs to form data if files were uploaded
         if (fileInfo) {
           const fileUrls = [];
-          if (fileInfo.files) {
-            // Multiple files
-            fileInfo.files().forEach(file => {
+
+          // Check if it's a group (multiple files)
+          if (fileInfo.count !== undefined && fileInfo.count > 0) {
+            // Multiple files - use promise to get all files
+            const files = await fileInfo.promise();
+            files.forEach(file => {
               fileUrls.push(file.cdnUrl);
             });
-          } else {
+          } else if (fileInfo.cdnUrl) {
             // Single file
             fileUrls.push(fileInfo.cdnUrl);
           }
-          formData.set('files', fileUrls.join(','));
+
+          if (fileUrls.length > 0) {
+            formData.set('files', fileUrls.join(','));
+          }
         }
 
         const response = await fetch(quoteFormElement.action, {
@@ -823,6 +829,9 @@ document.addEventListener('DOMContentLoaded', function() {
           formMessageElement.textContent = 'Thank you! We\'ll be in touch soon.';
           formMessageElement.className = 'form-message form-message--success';
           quoteFormElement.reset();
+
+          // Clear the Uploadcare widget
+          fileUploadWidget.value(null);
 
           // Reset timestamp for potential resubmission
           if (timestampInput) {
