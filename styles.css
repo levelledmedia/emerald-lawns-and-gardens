@@ -890,16 +890,6 @@ button {
   max-height: 120px;
 }
 
-.h-captcha {
-  display: flex;
-  justify-content: center;
-  min-height: 0;
-}
-
-.h-captcha:not(:empty) {
-  margin: var(--sp-4) auto;
-}
-
 .form-message {
   padding: var(--sp-3) var(--sp-4);
   border-radius: 8px;
