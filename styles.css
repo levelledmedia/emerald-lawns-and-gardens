@@ -890,6 +890,18 @@ button {
   max-height: 120px;
 }
 
+/* Honeypot: present in DOM, visually off-screen for humans */
+.hp-trap {
+  position: absolute !important;
+  left: -10000px !important;
+  top: auto !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
 .form-message {
   padding: var(--sp-3) var(--sp-4);
   border-radius: 8px;
