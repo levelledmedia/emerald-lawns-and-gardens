@@ -763,31 +763,33 @@ document.addEventListener('DOMContentLoaded', function() {
   // ========================================
   // Quote Form Handler
   // ========================================
-  const quoteForm = document.getElementById('quoteForm');
-  const formMessage = document.getElementById('formMessage');
+  // Use distinct variable names to avoid conflict with the earlier animation `quoteForm` constant.
+  const quoteFormElement = document.getElementById('quoteForm');
+  const formMessageElement = document.getElementById('formMessage');
 
-  if (quoteForm) {
+  if (quoteFormElement && formMessageElement) {
     // Set form timestamp when page loads
     const timestampInput = document.getElementById('formTimestamp');
     if (timestampInput) {
       timestampInput.value = Date.now();
     }
 
-    quoteForm.addEventListener('submit', async function(e) {
+    quoteFormElement.addEventListener('submit', async function(e) {
       e.preventDefault();
 
-      const submitButton = quoteForm.querySelector('button[type="submit"]');
+      const submitButton = quoteFormElement.querySelector('button[type="submit"]');
+      if (!submitButton) return;
       const originalButtonText = submitButton.textContent;
 
       // Disable button and show loading state
       submitButton.disabled = true;
       submitButton.textContent = 'Sending...';
-      formMessage.textContent = '';
-      formMessage.className = 'form-message';
+      formMessageElement.textContent = '';
+      formMessageElement.className = 'form-message';
 
       try {
-        const formData = new FormData(quoteForm);
-        const response = await fetch(quoteForm.action, {
+        const formData = new FormData(quoteFormElement);
+        const response = await fetch(quoteFormElement.action, {
           method: 'POST',
           body: new URLSearchParams(formData),
           headers: {
@@ -798,9 +800,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const result = await response.json();
 
         if (response.ok && result.success) {
-          formMessage.textContent = 'Thank you! We\'ll be in touch soon.';
-          formMessage.className = 'form-message form-message--success';
-          quoteForm.reset();
+          formMessageElement.textContent = 'Thank you! We\'ll be in touch soon.';
+          formMessageElement.className = 'form-message form-message--success';
+          quoteFormElement.reset();
 
           // Reset timestamp for potential resubmission
           if (timestampInput) {
@@ -812,12 +814,12 @@ document.addEventListener('DOMContentLoaded', function() {
             window.turnstile.reset();
           }
         } else {
-          formMessage.textContent = 'Something went wrong. Please try again or call us directly.';
-          formMessage.className = 'form-message form-message--error';
+          formMessageElement.textContent = 'Something went wrong. Please try again or call us directly.';
+          formMessageElement.className = 'form-message form-message--error';
         }
       } catch (error) {
-        formMessage.textContent = 'Network error. Please check your connection and try again.';
-        formMessage.className = 'form-message form-message--error';
+        formMessageElement.textContent = 'Network error. Please check your connection and try again.';
+        formMessageElement.className = 'form-message form-message--error';
       } finally {
         submitButton.disabled = false;
         submitButton.textContent = originalButtonText;
