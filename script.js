@@ -808,11 +808,6 @@ document.addEventListener('DOMContentLoaded', function() {
           if (timestampInput) {
             timestampInput.value = Date.now();
           }
-
-          // Reset Turnstile
-          if (window.turnstile) {
-            window.turnstile.reset();
-          }
         } else {
           formMessageElement.textContent = 'Something went wrong. Please try again or call us directly.';
           formMessageElement.className = 'form-message form-message--error';

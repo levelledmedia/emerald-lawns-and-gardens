@@ -890,13 +890,13 @@ button {
   max-height: 120px;
 }
 
-.cf-turnstile {
+.h-captcha {
   display: flex;
   justify-content: center;
   min-height: 0;
 }
 
-.cf-turnstile:not(:empty) {
+.h-captcha:not(:empty) {
   margin: var(--sp-4) auto;
 }
 
