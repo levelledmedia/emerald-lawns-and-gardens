@@ -789,6 +789,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
       try {
         const formData = new FormData(quoteFormElement);
+
+        // Get uploaded files from Uploadcare widget
+        const fileUploadWidget = uploadcare.Widget('#file-upload');
+        const fileInfo = await fileUploadWidget.value();
+
+        // Add file URLs to form data if files were uploaded
+        if (fileInfo) {
+          const fileUrls = [];
+          if (fileInfo.files) {
+            // Multiple files
+            fileInfo.files().forEach(file => {
+              fileUrls.push(file.cdnUrl);
+            });
+          } else {
+            // Single file
+            fileUrls.push(fileInfo.cdnUrl);
+          }
+          formData.set('files', fileUrls.join(','));
+        }
+
         const response = await fetch(quoteFormElement.action, {
           method: 'POST',
           body: new URLSearchParams(formData),

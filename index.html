@@ -964,6 +964,18 @@
           <input type="tel" name="phone" placeholder="Phone number" class="form-input" required>
         </div>
         <textarea name="message" placeholder="Briefly describe your project" class="form-input form-textarea" maxlength="1000" required></textarea>
+        <div class="form-upload">
+          <label for="file-upload" class="form-upload__label">Attach Photos (Optional)</label>
+          <input type="hidden" role="uploadcare-uploader" name="files" id="file-upload"
+                 data-public-key="c6bf46103f6fffdff2dc"
+                 data-multiple="true"
+                 data-multiple-max="3"
+                 data-images-only="true"
+                 data-preview-step="true"
+                 data-crop="disabled"
+                 data-tabs="file camera url gdrive gphotos dropbox instagram"
+          />
+        </div>
         <button type="submit" class="btn btn--primary btn--full">Yes, I Want a Free Quote</button>
         <div class="form-message" id="formMessage"></div>
       </form>
@@ -1029,6 +1041,9 @@
       </div>
     </div>
   </footer>
+
+  <!-- Uploadcare Widget -->
+  <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js"></script>
 
   <script src="script.js"></script>
 
