@@ -8,79 +8,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&family=Readex+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-  <style id="dark-mode-init">
-    html.dark-mode-init .card,
-    html.dark-mode-init .form-input,
-    html.dark-mode-init .btn--ghost-light {
-      background: #0A0A0A !important;
-      border-color: rgba(255, 255, 255, 0.1) !important;
-      color: #F1F5F9 !important;
-    }
-    html.dark-mode-init .btn--ghost-light {
-      background: transparent !important;
-      border-color: rgba(255, 255, 255, 0.4) !important;
-      color: #fff !important;
-    }
-    html.dark-mode-init .header {
-      background: #0A0A0A !important;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-    }
-  </style>
-  <script>
-    // Apply default theme mode immediately before page renders to prevent flash
-    (function() {
-      const defaultTheme = 'light';
-      const businessName = 'Emerald Lawns And Gardens';
-      const storageKey = 'siteTheme_' + businessName.replace(/[^a-zA-Z0-9]/g, '_');
-
-      // Check if this is a preview - if so, always use the default theme
-      // Previews are served from /websites/ path on localhost
-      const isPreview = window.location.pathname.includes('/websites/');
-
-      let savedMode = localStorage.getItem(storageKey);
-
-      // For previews, clear any saved preference so you always see the configured default
-      if (isPreview && savedMode !== null) {
-        localStorage.removeItem(storageKey);
-        savedMode = null;
-      }
-
-      // Decide which mode to use
-      // When defaultTheme is 'color': base is color-mode, toggle switches to dark-mode (no white/light mode)
-      // When defaultTheme is 'dark': base is dark-mode
-      // When defaultTheme is 'light': base is light (no class)
-      let activeMode = defaultTheme; // 'light', 'dark', or 'color'
-
-      if (savedMode !== null) {
-        activeMode = savedMode;
-      } else {
-        if (!isPreview) {
-          localStorage.setItem(storageKey, activeMode);
-        }
-      }
-
-      // Apply mode classes
-      if (activeMode === 'dark') {
-        document.documentElement.classList.add('dark-mode');
-        document.documentElement.classList.add('dark-mode-init');
-      } else if (activeMode === 'color') {
-        document.documentElement.classList.add('color-mode');
-      }
-
-      // Sync body classes when available
-      if (activeMode === 'dark' || activeMode === 'color') {
-        const applyBodyClass = () => {
-          if (activeMode === 'dark') document.body.classList.add('dark-mode');
-          if (activeMode === 'color') document.body.classList.add('color-mode');
-        };
-        if (document.body) {
-          applyBodyClass();
-        } else {
-          document.addEventListener('DOMContentLoaded', applyBodyClass);
-        }
-      }
-    })();
-  </script>
 </head>
 <body class="tall-header">
 
@@ -1021,24 +948,7 @@
         </div>
       </div>
       <div class="footer__bottom">
-        <p>© 2026 Emerald Lawns And Gardens. All rights reserved. | <a href="#">Privacy Policy</a> |
-          <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode">
-            <svg class="dark-mode-toggle__icon dark-mode-toggle__icon--sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="5"></circle>
-              <line x1="12" y1="1" x2="12" y2="3"></line>
-              <line x1="12" y1="21" x2="12" y2="23"></line>
-              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-              <line x1="1" y1="12" x2="3" y2="12"></line>
-              <line x1="21" y1="12" x2="23" y2="12"></line>
-              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-            </svg>
-            <svg class="dark-mode-toggle__icon dark-mode-toggle__icon--moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-            </svg>
-          </button>
-        </p>
+        <p>© 2026 Emerald Lawns And Gardens. All rights reserved.</p>
       </div>
     </div>
   </footer>
