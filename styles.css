@@ -505,6 +505,24 @@ button {
   align-items: center;
   justify-content: space-between;
   height: 95px;
+  position: relative;
+}
+
+.header__logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.header__content > div[style*="position: absolute"] {
+  position: static !important;
+  transform: none !important;
+  order: -1;
+  margin-right: auto;
+}
+
+.header__content > div[style*="position: absolute"] img {
+  height: 45px !important;
 }
 
 .header__nav-bar {
@@ -2241,28 +2259,6 @@ body.tall-header .header__nav-bar {
 
   .header__hamburger {
     display: flex;
-  }
-
-  .header__content {
-    position: relative;
-    justify-content: flex-end;
-  }
-
-  .header__logo {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .header__content > div[style*="position: absolute"] {
-    position: static !important;
-    transform: none !important;
-    order: -1;
-    margin-right: auto;
-  }
-
-  .header__content > div[style*="position: absolute"] img {
-    height: 45px !important;
   }
 
   .hero {
