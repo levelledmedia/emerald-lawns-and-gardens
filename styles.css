@@ -503,26 +503,28 @@ button {
 .header__content {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   height: 95px;
   position: relative;
 }
 
 .header__logo {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  z-index: 11;
 }
 
 .header__content > div[style*="position: absolute"] {
-  position: static !important;
+  position: absolute !important;
+  left: 0 !important;
   transform: none !important;
-  order: -1;
-  margin-right: auto;
 }
 
 .header__content > div[style*="position: absolute"] img {
   height: 45px !important;
+}
+
+.header__right {
+  position: absolute;
+  right: 0;
 }
 
 .header__nav-bar {
